@@ -1,0 +1,17 @@
+stages:
+- name: compile
+  steps:
+  - runScriptConfig:
+      image: 10.32.40.44:8080/library/maven:3.3.9-jdk-8-alpine
+      shellScript: cd compute-interest-api && mvn clean install
+  - publishImageConfig:
+      dockerfilePath: ./compute-interest-api/Dockerfile
+      buildContext: .
+      tag: 10.32.40.44:8080/test/compute-interest-api:latest
+      pushRemote: true
+      registry: 10.32.40.44:8080
+- name: dep
+  steps:
+  - applyYamlConfig:
+      path: ./compute-interest-api.yaml
+timeout: 60
