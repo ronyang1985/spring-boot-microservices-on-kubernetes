@@ -30,7 +30,7 @@ spec:
         tier: compute
     spec:
       containers:
-        - image: anthonyamanse/compute-interest-api:v1
+        - image: 10.32.40.44:8080/test/compute-interest-api:latest
           imagePullPolicy: Always
           name: compute-interest-api
           env:
